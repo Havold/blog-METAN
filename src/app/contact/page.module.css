@@ -21,7 +21,7 @@
 
 .img {
     object-fit: contain;
-    animation: move 3s ease infinite alternate;
+    animation: move 2s ease infinite alternate;
 }
 
 @keyframes move {
@@ -30,8 +30,7 @@
     }
 
     to {
-        transform: translateY(0px);
-        scale: 1.03;
+        transform: translateY(0px) scale(1.03);
     }
 }
 

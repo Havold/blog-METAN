@@ -1,0 +1,19 @@
+.container {
+    margin: 0 120px;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.selectTitle {
+    font-weight: 500;
+}
+
+.items {
+    margin: 20px 0;
+    display: flex;
+    gap: 60px;
+}
+
