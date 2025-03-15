@@ -19,7 +19,6 @@
 }
 
 
-
 .title {
     text-align: left;
 }
@@ -73,6 +72,19 @@
     height: 600px;
 }
 
+.img {
+    object-fit: cover;
+    animation: move 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes move {
+    from {
+        transform: translateY(-15px);
+    }
+    to {
+        transform: translateY(15px);
+    }
+}
 
 .section.animate {
     animation: fadeIn 3s ease-in-out forwards;

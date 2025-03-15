@@ -17,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
 }) => {
   return (
-    <Link href={url}>
+    <Link style={{ width: "fit-content", outline: "none" }} href={url}>
       <button
         className={styles.btn}
         style={{ color: color, backgroundColor: bgColor }}

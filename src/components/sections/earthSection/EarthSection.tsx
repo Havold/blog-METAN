@@ -85,7 +85,12 @@ const EarthSection = () => {
       {/* RIGHT */}
       <div className={styles.right}>
         <div className={styles.imgContainer}>
-          <Image fill={true} src="/assets/earth.png" alt="earth" />
+          <Image
+            className={styles.img}
+            fill={true}
+            src="/assets/earth.png"
+            alt="earth"
+          />
         </div>
       </div>
     </section>

@@ -61,7 +61,12 @@ const VenusSection = () => {
       {/* RIGHT */}
       <div className={styles.right}>
         <div className={styles.imgContainer}>
-          <Image fill={true} src="/assets/venus.png" alt="Venus" />
+          <Image
+            className={styles.img}
+            fill={true}
+            src="/assets/venus.png"
+            alt="Venus"
+          />
         </div>
       </div>
     </section>
