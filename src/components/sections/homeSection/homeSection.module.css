@@ -1,0 +1,105 @@
+.section {
+    height: 100vh; /* Mỗi section chiếm toàn bộ chiều cao màn hình */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    scroll-snap-align: center; /* Snap về giữa viewport */
+    opacity: 0;
+}
+
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.planet {
+    text-align: center;
+}
+
+.subTitle {
+    font-size: 24px;
+    opacity: 0;
+}
+
+.title {
+    font-size: 100px;
+    height: fit-content;
+    line-height: 100px;
+}
+
+.line {
+    height: 1px;
+    background-color: #7ce7ff;
+}
+
+.desc {
+    font-size: 12px;
+    width: 60%;
+    text-align: center;
+    letter-spacing: 2px;
+
+}
+
+.btn {
+    background-color: #CEE0F1;
+    color: black;
+    padding: 16px 36px;
+    font-weight: 700;
+    border-radius: 40px;
+    font-size: 16px;
+
+    box-shadow: -2px 6px 47px -10px rgba(255,255,255,1) ;
+    -webkit-box-shadow: -2px 6px 47px -10px rgba(255,255,255,1) ;
+    -moz-box-shadow: -2px 6px 47px -10px rgba(255,255,255,1) ;
+}
+
+.subTitle.animate {
+    animation: expandText 3s ease-in-out forwards;
+}
+
+
+.line.animate {
+    animation: expandLine 3s ease-in-out forwards;
+}
+
+.section.animate {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+
+@keyframes expandText {
+    0% {
+        letter-spacing: 0px;
+    }
+    
+    100% {
+        letter-spacing: 6px;
+        opacity: 1;
+
+    }
+}
+
+@keyframes expandLine {
+    0% {
+        width: 0px;
+    }
+
+    100% {
+        width: 140px;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0%;
+    } 
+
+    100% {
+        opacity: 100%;
+    }
+}

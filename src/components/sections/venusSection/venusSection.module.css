@@ -1,0 +1,103 @@
+.section {
+    height: 100vh; /* Mỗi section chiếm toàn bộ chiều cao màn hình */
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    scroll-snap-align: center; /* Snap về giữa viewport */
+    padding: 0 80px;
+    opacity: 0;
+}
+
+.left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: end;
+}
+
+.right {
+    flex: 1;
+}
+
+
+
+.title {
+    text-align: right;
+}
+
+.subTitle {
+    font-size: 24px;
+}
+
+.planetName {
+    font-size: 100px;
+    height: fit-content;
+    line-height: 100px;
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 20px;
+}
+
+.line {
+    width: 140px;
+    height: 1px;
+    background-color: #fff27c;
+}
+
+
+.content {
+    font-size: 12px;
+    width: 80%;
+    text-align: right;
+    letter-spacing: 2px;
+} 
+
+.imgContainer {
+    position: relative;
+    width: 600px;
+    height: 600px;
+}
+
+.section.animate {
+    animation: fadeIn 3s ease-in-out forwards;
+
+}
+
+.line.animate {
+    animation: expandLine 3s ease-in-out forwards;
+}
+
+@keyframes expandText {
+    0% {
+        letter-spacing: 0px;
+    }
+    
+    100% {
+        letter-spacing: 6px;
+    }
+}
+
+@keyframes expandLine {
+    0% {
+        width: 0px;
+    }
+
+    100% {
+        width: 140px;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0%;
+    } 
+
+    100% {
+        opacity: 100%;
+    }
+}
