@@ -1,8 +1,12 @@
 .container {
     /* autoprefixer: off */
     position: sticky;
-    z-index: 10;
-    background: transparent;
+    top: 0;
+    z-index: 1000;
+    /* background: ; */
+    background: rgb(24,37,62);
+    background: linear-gradient(148deg, rgba(24,37,62,0.5) 0%, rgba(20,31,51,0.5) 14%, rgba(0,0,0,0.5) 100%);
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
