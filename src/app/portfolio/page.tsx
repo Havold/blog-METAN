@@ -3,6 +3,11 @@ import React from "react";
 import styles from "./page.module.css";
 import Gallery from "@/components/Gallery/Gallery";
 
+export const metadata = {
+  title: "Portfolio",
+  description: "This is Portfolio page",
+};
+
 const data = [
   {
     id: 1,

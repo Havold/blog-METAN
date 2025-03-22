@@ -13,6 +13,18 @@ type PostBlogProps = {
   username: string;
 };
 
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { id: string };
+}) => {
+  const post: PostBlogProps = await getData(params.id);
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+};
+
 const getData = async (id: string) => {
   const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
     cache: "no-store",

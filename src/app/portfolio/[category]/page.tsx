@@ -8,6 +8,19 @@ type CategoryProps = {
   };
 };
 
+export const generateMetadata = ({
+  params,
+}: {
+  params: {
+    category: string;
+  };
+}) => {
+  return {
+    title: params.category,
+    description: params.category,
+  };
+};
+
 const data = [
   {
     id: 1,

@@ -11,6 +11,11 @@ type Post = {
   img: string;
 };
 
+export const metadata = {
+  title: "Blog",
+  description: "This is Blog page",
+};
+
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/posts", {
     cache: "no-store",
