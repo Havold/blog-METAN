@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    align-items: center;
+    width: 68px;
+    justify-content: space-between;
+    position: relative;
+    border: 2px solid #E5BB5B;
+    border-radius: 100px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.dark.container {
+    border: 2px solid white;
+}
+
+.moon {
+    color: white;
+}
+
+.sun {
+    color: #E5BB5B;
+}
+
+.ball {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #E5BB5B;
+    border-radius: 100px;
+    top: 50%;
+    transform: translateY(-50%) translateX(0);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.dark .ball {
+    transform: translateY(-50%) translateX(28px); /* Chuyển sang phải */
+    background-color: white;
+}
