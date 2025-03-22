@@ -1,0 +1,22 @@
+.container {
+    margin: 40px 120px;
+}
+
+.title {
+    font-size: 60px;
+    line-height: 60px;
+}
+
+.category {
+    text-transform: capitalize;
+    font-size: 28px;
+    font-weight: 600;
+    color: #CEE0F1
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    margin: 80px 0;
+}

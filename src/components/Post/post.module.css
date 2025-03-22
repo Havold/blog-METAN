@@ -1,0 +1,43 @@
+.container {
+    display: flex; 
+    align-items: center;
+    gap: 60px;
+}
+
+.container:nth-child(odd) {
+
+}
+
+.container:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.contentContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 32px;
+}
+
+.desc {
+    text-align: justify;
+    font-size: 16px;
+}
+
+.imgContainer {
+    position: relative;
+    width: 500px;
+    height: 350px;
+}
+
+.img {
+    object-fit: cover;
+    border-radius: 12px;
+
+}
