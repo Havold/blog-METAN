@@ -4,10 +4,6 @@
   scroll-behavior: smooth;
   height: 100vh;
 
-  background:
-  url("/assets/stars_texture.jpg");
-  mix-blend-mode: lighten;
-  background-size: cover;
 
   &::-webkit-scrollbar {
     width: 4px;
