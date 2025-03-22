@@ -2,25 +2,19 @@ import Image from "next/image";
 import React from "react";
 
 import styles from "./blogPost.module.css";
+import Link from "next/link";
 
 type BlogPostProps = {
   title: string;
   desc: string;
   imgUrl: string;
   id: string | number;
-  onClick: () => void;
 };
 
-const BlogPost: React.FC<BlogPostProps> = ({
-  title,
-  desc,
-  imgUrl,
-  id,
-  onClick,
-}) => {
+const BlogPost: React.FC<BlogPostProps> = ({ title, desc, imgUrl, id }) => {
   console.log(id);
   return (
-    <div onClick={onClick} className={styles.container}>
+    <Link href={`/blog/${id}`} className={styles.container}>
       {/* LEFT */}
       <div className={styles.contentContainer}>
         <span className={styles.title}>{title}</span>
@@ -35,7 +29,7 @@ const BlogPost: React.FC<BlogPostProps> = ({
           alt="BlogPost Image"
         />
       </div>
-    </div>
+    </Link>
   );
 };
 

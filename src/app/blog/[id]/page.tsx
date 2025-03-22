@@ -1,34 +1,41 @@
-"use client";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import React from "react";
 
 import styles from "./page.module.css";
+import { notFound } from "next/navigation";
 
-// type PostBlogProps = {
-//   title: string;
-//   desc: string;
-//   imgUrl: string;
-//   params: {
-//     id: string;
-//   };
-// };
+type PostBlogProps = {
+  id: string;
+  title: string;
+  desc: string;
+  img: string;
+  content: string;
+  username: string;
+};
 
-const PostBlog = ({ params }: { params: { id: string } }) => {
-  const searchParams = useSearchParams();
-  const title = searchParams.get("title");
-  const desc = searchParams.get("desc");
-  const imgUrl = searchParams.get("imgUrl");
+const getData = async (id: string) => {
+  const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
+    cache: "no-store",
+  });
 
-  console.log(params.id);
+  if (!res.ok) {
+    return notFound();
+  }
+
+  return res.json();
+};
+
+const PostBlog = async ({ params }: { params: { id: string } }) => {
+  const data: PostBlogProps = await getData(params.id);
+
   return (
     <div className={styles.container}>
       {/* TOP */}
       <div className={styles.headerContainer}>
         {/* LEFT */}
         <div className={styles.info}>
-          <span className={styles.title}>{title}</span>
-          <p className={styles.desc}>{desc}</p>
+          <span className={styles.title}>{data.title}</span>
+          <p className={styles.desc}>{data.desc}</p>
           <div className={styles.author}>
             <div className={styles.avatarContainer}>
               <Image
@@ -38,7 +45,7 @@ const PostBlog = ({ params }: { params: { id: string } }) => {
                 alt="Avatar"
               />
             </div>
-            <span className={styles.name}>John Doe</span>
+            <span className={styles.name}>{data.username}</span>
           </div>
         </div>
         {/* RIGHT */}
@@ -46,31 +53,14 @@ const PostBlog = ({ params }: { params: { id: string } }) => {
           <Image
             className={styles.img}
             fill={true}
-            src={imgUrl || "/assets/default-image.jpg"}
+            src={data.img || "/assets/default-image.jpg"}
             alt="Blog Image"
           />
         </div>
       </div>
       {/* BOTTOM */}
       <div className={styles.contentContainer}>
-        <p className={styles.content}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto eaque
-          reprehenderit recusandae vel blanditiis exercitationem praesentium
-          error! Est nulla molestias a modi eaque officia ipsa, laboriosam
-          consequatur fuga nobis fugit.
-        </p>
-        <p className={styles.content}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto eaque
-          reprehenderit recusandae vel blanditiis exercitationem praesentium
-          error! Est nulla molestias a modi eaque officia ipsa, laboriosam
-          consequatur fuga nobis fugit.
-        </p>
-        <p className={styles.content}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto eaque
-          reprehenderit recusandae vel blanditiis exercitationem praesentium
-          error! Est nulla molestias a modi eaque officia ipsa, laboriosam
-          consequatur fuga nobis fugit.
-        </p>
+        <p className={styles.content}>{data.desc}</p>
       </div>
     </div>
   );

@@ -1,9 +1,20 @@
-import React from 'react'
+import { notFound } from "next/navigation";
+import React from "react";
 
-const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+const getData = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
 
-export default Dashboard
+  if (!res.ok) {
+    return notFound;
+  }
+
+  return res.json();
+};
+
+const Dashboard = async () => {
+  const data = await getData();
+  console.log(data);
+  return <div>Dashboard</div>;
+};
+
+export default Dashboard;
