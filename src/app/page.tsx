@@ -11,12 +11,6 @@ export default function Home() {
       <EarthSection />
       <VenusSection />
       <MarsSection />
-      {/* <EarthSection /> */}
-      {/* <section className={styles.section}>
-        <EarthSection />
-      </section>
-      <section className={styles.section}>VENUS</section>
-      <section className={styles.section}>MARS</section> */}
     </div>
   );
 }

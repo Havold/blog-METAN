@@ -1,19 +1,23 @@
-import { notFound } from "next/navigation";
+"use client";
+import Button from "@/components/Button/Button";
+import { signIn, useSession } from "next-auth/react";
 import React from "react";
 
-const getData = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+// const getData = async () => {
+//   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
 
-  if (!res.ok) {
-    return notFound;
-  }
+//   if (!res.ok) {
+//     return notFound;
+//   }
 
-  return res.json();
-};
+//   return res.json();
+// };
 
-const Dashboard = async () => {
-  const data = await getData();
-  console.log(data);
+const Dashboard = () => {
+  // const data = await getData();
+  const { data: session, status } = useSession();
+  console.log(session);
+  console.log(status);
   return <div>Dashboard</div>;
 };
 

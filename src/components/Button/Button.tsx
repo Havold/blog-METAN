@@ -4,28 +4,46 @@ import styles from "./button.module.css";
 import Link from "next/link";
 
 type ButtonProps = {
-  url: string;
+  url?: string;
   bgColor?: string;
   color?: string;
   children: React.ReactNode;
+  onClick?: () => void;
 };
 
 const Button: React.FC<ButtonProps> = ({
-  url,
+  url = undefined,
   bgColor = "#CEE0F1",
   color = "black",
   children,
+  onClick,
 }) => {
-  return (
-    <Link style={{ width: "fit-content", outline: "none" }} href={url}>
+  if (onClick) {
+    return (
       <button
+        onClick={onClick}
         className={styles.btn}
         style={{ color: color, backgroundColor: bgColor }}
       >
         {children}
       </button>
-    </Link>
-  );
+    );
+  }
+
+  if (url) {
+    return (
+      <Link
+        className={styles.btn}
+        style={{ color: color, backgroundColor: bgColor }}
+        href={url}
+        passHref
+      >
+        {children}
+      </Link>
+    );
+  }
+
+  return null;
 };
 
 export default Button;
