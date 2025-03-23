@@ -80,7 +80,7 @@ const MarsSection = () => {
           >{`Mars is the third planet from the Sun. Mars's axis of rotation is tilted with respect to its orbital plane, producing seasons on Mars. The gravitational interaction between Mars and the Moon cause tides, stabilizes Mars's orientation on its axis, and gradually slows its rotations.`}</p>
         </div>
         {/* BUTTONS  */}
-        <Button url="" bgColor="#EA5443" color="white">
+        <Button url="#" bgColor="#EA5443" color="white">
           LEARN MORE
         </Button>
       </div>

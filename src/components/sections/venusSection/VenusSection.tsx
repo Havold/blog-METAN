@@ -54,7 +54,7 @@ const VenusSection = () => {
           >{`Venus is the third planet from the Sun. Venus's axis of rotation is tilted with respect to its orbital plane, producing seasons on Venus. The gravitational interaction between Venus and the Moon cause tides, stabilizes Venus's orientation on its axis, and gradually slows its rotations.`}</p>
         </div>
         {/* BUTTONS  */}
-        <Button url="" bgColor="#fff27c">
+        <Button url="#" bgColor="#fff27c">
           LEARN MORE
         </Button>
       </div>

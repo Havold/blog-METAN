@@ -33,32 +33,6 @@ const EarthSection = () => {
     };
   }, []);
   return (
-    // <section ref={sectionRef} className={styles.section}>
-    //   <div className={`${styles.content} ${isVisible ? styles.animate : ""}`}>
-    //     <div className={`${styles.planet} ${isVisible ? styles.animate : ""}`}>
-    //       <span
-    //         className={`${styles.subTitle} ${isVisible ? styles.animate : ""}`}
-    //       >
-    //         THE BLUE PLANET
-    //       </span>
-    //       <h1 className={`${styles.title} ${isVisible ? styles.animate : ""}`}>
-    //         EARTH
-    //       </h1>
-    //     </div>
-    //     <div
-    //       className={`${styles.line} ${isVisible ? styles.animate : ""}`}
-    //     ></div>
-    //     <p className={`${styles.desc} ${isVisible ? styles.animate : ""}`}>
-    //       {`Learn more about this facinating miracle that we call our home. Planet
-    //       Earth. Course enrollment starts today. Early Bird tickets typically last
-    //       a week, don't miss out!`}
-    //     </p>
-    //   </div>
-    //   <button className={`${styles.btn} ${isVisible ? styles.animate : ""}`}>
-    //     LEARN MORE
-    //   </button>
-    // </section>
-
     <section
       ref={sectionRef}
       className={`${styles.section} ${isVisible ? styles.animate : ""}`}
@@ -80,7 +54,7 @@ const EarthSection = () => {
           >{`Earth is the third planet from the Sun. Earth's axis of rotation is tilted with respect to its orbital plane, producing seasons on Earth. The gravitational interaction between Earth and the Moon cause tides, stabilizes Earth's orientation on its axis, and gradually slows its rotations.`}</p>
         </div>
         {/* BUTTONS  */}
-        <Button url="">LEARN MORE</Button>
+        <Button url="#">LEARN MORE</Button>
       </div>
       {/* RIGHT */}
       <div className={styles.right}>

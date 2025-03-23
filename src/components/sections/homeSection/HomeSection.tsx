@@ -56,9 +56,6 @@ const HomeSection = () => {
           a week, don't miss out!`}
         </p>
       </div>
-      {/* <button className={`${styles.btn} ${isVisible ? styles.animate : ""}`}>
-        GET STARTED
-      </button> */}
       <Button url="/contact">GET STARTED</Button>
     </section>
   );

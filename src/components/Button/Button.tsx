@@ -9,6 +9,8 @@ type ButtonProps = {
   color?: string;
   children: React.ReactNode;
   onClick?: () => void;
+  size?: "small" | "medium" | "large";
+  width?: string;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,13 +19,32 @@ const Button: React.FC<ButtonProps> = ({
   color = "black",
   children,
   onClick,
+  size = "medium",
+  width = "fit-content",
 }) => {
+  let paddingSize: string;
+  switch (size) {
+    case "small":
+      paddingSize = "12px 20px";
+      break;
+    case "medium":
+    case "large":
+      paddingSize = "16px 36px";
+      break;
+    default:
+      paddingSize = "16px 36px";
+  }
   if (onClick) {
     return (
       <button
         onClick={onClick}
         className={styles.btn}
-        style={{ color: color, backgroundColor: bgColor }}
+        style={{
+          padding: paddingSize,
+          color: color,
+          backgroundColor: bgColor,
+          width: width,
+        }}
       >
         {children}
       </button>
@@ -34,9 +55,13 @@ const Button: React.FC<ButtonProps> = ({
     return (
       <Link
         className={styles.btn}
-        style={{ color: color, backgroundColor: bgColor }}
+        style={{
+          padding: paddingSize,
+          color: color,
+          backgroundColor: bgColor,
+          width: width,
+        }}
         href={url}
-        passHref
       >
         {children}
       </Link>
