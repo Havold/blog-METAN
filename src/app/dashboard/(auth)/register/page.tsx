@@ -4,12 +4,48 @@ import InputField from "@/components/InputField/InputField";
 import { FacebookRounded, Google } from "@mui/icons-material";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import React from "react";
+import React, { useRef, useState } from "react";
 
 import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
 
 const Register = () => {
-  const handleRegister = () => {};
+  const [err, setErr] = useState<string | null>(null);
+  const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
+  const handleRegister = async () => {
+    if (!formRef.current) {
+      setErr("Some thing went wrong!");
+      return;
+    }
+    const formData = new FormData(formRef.current);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const username = formData.get("username");
+    const password = formData.get("password");
+
+    try {
+      const res = await fetch("http://localhost:3000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          username,
+          password,
+        }),
+      });
+
+      if (res.status === 201) {
+        router.push("/dashboard/login?success=Create user successfully");
+      }
+    } catch (error) {
+      console.log(error);
+      setErr("Some thing went wrong!");
+    }
+  };
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -44,12 +80,14 @@ const Register = () => {
             Or sign up using your email address
           </span>
         </div>
-        <form className={styles.inputs}>
+        <form ref={formRef} className={styles.inputs}>
+          <InputField label="Name" name="name" />
           <InputField label="Email" name="email" />
           <InputField label="Username" name="username" />
           <InputField label="Password" name="password" type="password" />
         </form>
         <div className={styles.footer}>
+          {err ? err : ""}
           <div className={styles.agreement}>
             <input className={styles.checkbox} id="agreement" type="checkbox" />
             <label className={styles.subTitle} htmlFor="agreement">

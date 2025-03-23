@@ -3,9 +3,13 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
-    name: {
+    username: {
       type: String,
       unique: true,
+      require: true,
+    },
+    name: {
+      type: String,
       require: true,
     },
     email: {
@@ -18,7 +22,7 @@ const userSchema = new Schema(
       require: true,
     },
   },
-  { timestamps }
+  { timestamps: true }
 );
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
