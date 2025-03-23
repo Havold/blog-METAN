@@ -81,10 +81,15 @@ const Register = () => {
           </span>
         </div>
         <form ref={formRef} className={styles.inputs}>
-          <InputField label="Name" name="name" />
-          <InputField label="Email" name="email" />
-          <InputField label="Username" name="username" />
-          <InputField label="Password" name="password" type="password" />
+          <InputField required={true} label="Name" name="name" />
+          <InputField required={true} label="Email" name="email" />
+          <InputField required={true} label="Username" name="username" />
+          <InputField
+            required={true}
+            label="Password"
+            name="password"
+            type="password"
+          />
         </form>
         <div className={styles.footer}>
           {err ? err : ""}
