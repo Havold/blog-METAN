@@ -5,9 +5,19 @@ import styles from "./page.module.css";
 import InputField from "@/components/InputField/InputField";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const router = useRouter();
+  const { status } = useSession();
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (status === "authenticated") {
+    return router.push("/dashboard");
+  }
   return (
     <div className={styles.container}>
       <div className={styles.cardContainer}>

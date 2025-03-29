@@ -1,5 +1,6 @@
 "use client";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 // const getData = async () => {
@@ -13,10 +14,17 @@ import React from "react";
 // };
 
 const Dashboard = () => {
-  // const data = await getData();
   const { data: session, status } = useSession();
-  console.log(session);
-  console.log(status);
+  const router = useRouter();
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (status === "unauthenticated") {
+    return router.push("/dashboard/login");
+  }
+
   return <div>Dashboard</div>;
 };
 
