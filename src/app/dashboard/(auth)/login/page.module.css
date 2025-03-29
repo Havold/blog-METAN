@@ -1,0 +1,91 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    width: 30%;
+    padding: 60px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    /* background-color: rgba(255, 255, 255, 0.182); */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 400;
+    animation: expandText 2s ease-in-out forwards;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.optContainer {
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.rememberContainer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.checkbox {
+    accent-color: #4ed6f5; /* Đổi màu checkbox */
+}
+
+.link {
+    color: #4ed6f5;
+    font-weight: bold;
+    margin-left: 8px;
+    transition: all 0.2s ease;
+}
+
+.link:hover {
+    opacity: 0.8;
+}
+
+.subTitle {
+    font-size: 12px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes expandText {
+    from {
+        opacity: 0;
+        letter-spacing: 0px;
+    } 
+    to {
+        opacity: 1;
+        letter-spacing: 4px;
+    }
+}
