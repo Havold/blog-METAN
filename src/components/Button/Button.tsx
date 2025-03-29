@@ -34,22 +34,6 @@ const Button: React.FC<ButtonProps> = ({
     default:
       paddingSize = "16px 36px";
   }
-  if (onClick) {
-    return (
-      <button
-        onClick={onClick}
-        className={styles.btn}
-        style={{
-          padding: paddingSize,
-          color: color,
-          backgroundColor: bgColor,
-          width: width,
-        }}
-      >
-        {children}
-      </button>
-    );
-  }
 
   if (url) {
     return (
@@ -66,9 +50,21 @@ const Button: React.FC<ButtonProps> = ({
         {children}
       </Link>
     );
-  }
-
-  return null;
+  } else
+    return (
+      <button
+        onClick={onClick}
+        className={styles.btn}
+        style={{
+          padding: paddingSize,
+          color: color,
+          backgroundColor: bgColor,
+          width: width,
+        }}
+      >
+        {children}
+      </button>
+    );
 };
 
 export default Button;
