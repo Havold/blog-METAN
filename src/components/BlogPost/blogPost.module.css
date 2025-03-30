@@ -5,6 +5,7 @@
     flex-direction: row-reverse;
     cursor: pointer;
     transition: all 0.5s ease;
+    animation: fadeIn 1s ease-in-out forwards;
 }
 
 .container:hover {
@@ -38,5 +39,13 @@
 .img {
     object-fit: cover;
     border-radius: 12px;
+}
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

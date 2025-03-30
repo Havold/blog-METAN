@@ -1,21 +1,78 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import React from "react";
+import { notFound, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import useSWR from "swr";
 
-// const getData = async () => {
-//   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+import styles from "./page.module.css";
+import InputField from "@/components/InputField/InputField";
+import Image from "next/image";
+import {
+  AutoGraphRounded,
+  CloseRounded,
+  CloudRounded,
+  DarkModeRounded,
+  FlareRounded,
+  InsightsRounded,
+} from "@mui/icons-material";
+import Tag from "@/components/Tag/Tag";
+import PostWidget from "@/components/PostWidget/PostWidget";
+import Button from "@/components/Button/Button";
 
-//   if (!res.ok) {
-//     return notFound;
-//   }
+type PostBlogProps = {
+  id: string;
+  title: string;
+  desc: string;
+  img: string;
+  content: string;
+  username: string;
+};
 
-//   return res.json();
-// };
+const tags = [
+  {
+    id: 1,
+    title: "Imagine",
+    subTitle: "Tag",
+    icon: <FlareRounded />,
+  },
+  {
+    id: 2,
+    title: "Chill",
+    subTitle: "Tag",
+    icon: <DarkModeRounded />,
+  },
+  {
+    id: 3,
+    title: "Interesting",
+    subTitle: "Tag",
+    icon: <AutoGraphRounded />,
+  },
+];
+
+const fetcher = (args: string) => {
+  return fetch(args).then((res) => res.json());
+};
 
 const Dashboard = () => {
+  const [image, setImage] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
   const { data: session, status } = useSession();
+  console.log(session?.user);
+  const { data, error, isLoading } = useSWR(
+    `api/posts?username=${session?.user?.username}`,
+    fetcher
+  );
+
+  console.log(data);
   const router = useRouter();
+
+  useEffect(() => {
+    return () => {
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
+    };
+  }, [preview]);
 
   if (status === "loading") {
     return <p>Loading...</p>;
@@ -25,7 +82,127 @@ const Dashboard = () => {
     return router.push("/dashboard/login");
   }
 
-  return <div>Dashboard</div>;
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return notFound();
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImage(file);
+      setPreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleClose = (e: React.MouseEvent<SVGSVGElement>) => {
+    e.preventDefault();
+    setImage(null);
+    setPreview(null);
+  };
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.contentContainer}>
+        <div className={styles.header}>
+          <Image
+            className={styles.img}
+            src="/assets/gallery_1.jpg"
+            alt="Image"
+            fill={true}
+          />
+          <span className={styles.title}>METAN STATION</span>
+          <div className={styles.textImg}>
+            <span className={styles.name}>Welcome to Dashboard</span>
+            <span className={styles.subName}>
+              Where you create your own amazing post
+            </span>
+          </div>
+        </div>
+        <div className={styles.tags}>
+          {tags.map((tag) => (
+            <Tag
+              key={tag.id}
+              icon={tag.icon}
+              subTitle={tag.subTitle}
+              title={tag.title}
+            />
+          ))}
+        </div>
+        <span className={styles.title}>Your posts</span>
+        <div className={styles.posts}>
+          {/* POSTS */}
+          {data.length > 0 ? (
+            data.map((post: PostBlogProps) => (
+              <PostWidget
+                key={post.id}
+                id={post.id}
+                img={post.img}
+                title={post.title}
+                avatar={"/assets/default-avatar.jpg"}
+                username={post.username}
+              />
+            ))
+          ) : (
+            <div
+              style={{ fontSize: "12px", width: "100%", textAlign: "center" }}
+            >
+              Don&apos;t have any post yet!
+            </div>
+          )}
+        </div>
+      </div>
+      <form className={styles.createContainer}>
+        <span className={styles.title}>Add New Post</span>
+        <InputField label="Title" name="title" required />
+        <InputField label="Description" name="desc" required />
+        <div className={styles.textareaContainer}>
+          <label className={styles.label} htmlFor="content">
+            Content
+          </label>
+          <textarea
+            id="content"
+            className={styles.textarea}
+            name="content"
+            placeholder="Content"
+            rows={10}
+          />
+        </div>
+        <div>
+          <input
+            onChange={handleChange}
+            id="upload"
+            type="file"
+            style={{ display: "none" }}
+          />
+          {!preview ? (
+            <label className={styles.labelContainer} htmlFor="upload">
+              <CloudRounded className={styles.icon} id="upload" />
+              Upload
+            </label>
+          ) : (
+            <label htmlFor="upload">
+              <div className={styles.imgContainer}>
+                <CloseRounded onClick={handleClose} className={styles.close} />
+                <Image
+                  className={styles.img}
+                  fill={true}
+                  src={preview}
+                  alt="Uploaded Picture"
+                />
+              </div>
+            </label>
+          )}
+        </div>
+        <Button width="inherit" bgColor="#4ed6f5" size="small" color="white">
+          Create New Post
+        </Button>
+      </form>
+    </div>
+  );
 };
 
 export default Dashboard;

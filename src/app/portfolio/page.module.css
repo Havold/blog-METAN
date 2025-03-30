@@ -1,5 +1,6 @@
 .container {
     margin: 0 120px;
+    animation: fadeIn 1s ease-in-out forwards;
 }
 
 .title {
@@ -17,3 +18,12 @@
     gap: 60px;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+    

@@ -1,0 +1,101 @@
+.container {
+    position: relative;
+    padding: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    /* background-color: rgba(255, 255, 255, 0.182); */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    /* border-radius: 8px; */
+    /* flex: 1; */
+    width: 320px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 999;
+    background-color: #4ed6f5;
+    border-radius: 999px;
+    font-size: 20px;
+    padding: 4px;
+    transition: all ease 0.2s;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.imgContainer {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.img {
+    object-fit: cover;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.line {
+    width: 80%;
+    height: 2px;
+    background-color: #4ed6f5;
+
+    animation: lineExpand 4s ease-in-out forwards;
+}
+
+.authorContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.avatarContainer {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    position: relative;
+    overflow: hidden;
+}
+
+.avatar {
+    object-fit: cover;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.role {
+    font-size: 8px;
+    font-weight: 200;
+    color: #ccc;
+}
+
+@keyframes lineExpand {
+    from {
+        width: 0px;
+    } to {
+        width: 80%;
+    }
+}

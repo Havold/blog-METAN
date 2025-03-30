@@ -1,0 +1,186 @@
+.container {
+    margin: 20px 80px;
+    display: flex;
+
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+.contentContainer {
+    flex: 1;
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 600px;
+}
+
+.header {
+    position: relative;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+
+    box-shadow: -2px 6px 47px -10px rgba(255,255,255,0.4) ;
+    -webkit-box-shadow: -2px 6px 47px -10px rgba(255,255,255,0.4) ;
+    -moz-box-shadow: -2px 6px 47px -10px rgba(255,255,255,0.4) ;
+}
+
+.img {
+    object-fit: cover;
+}
+
+.header .title {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 10px;
+}
+
+.textImg {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: #CEE0F1;
+    color: #111;
+    bottom: 16px;
+    left: 16px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+
+.name {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.subName {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.tags {
+    display: flex;
+    gap: 16px;
+}
+
+.posts {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    padding-bottom: 16px;
+
+    &::-webkit-scrollbar {
+        width: 0px;
+        height: 2px;
+      }
+    
+      &::-webkit-scrollbar-thumb {
+        background-color: #CEE0F1;
+        border-radius: 4px;
+      }
+    
+      &::-webkit-scrollbar-track {
+        background-color: #18253e;
+        border-radius: 10px;
+      }
+}
+
+.posts > * {
+    flex: 0 0 auto; /* Không co giãn, giữ nguyên kích thước */
+    width: 250px; /* Đặt chiều rộng cố định cho từng post */
+}
+
+.title {
+    font-size: 14px;
+    font-weight: 500;
+    animation: textExpand 2s ease-in-out forwards;
+}
+
+.createContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.textareaContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    font-size: 12px;
+}
+
+.textarea {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    caret-color: #4ed6f5;
+    width: 100%;
+    padding: 10px 8px;
+    border-radius: 8px;
+    outline: none;
+    font-family: 'Poppins';
+    transition: all 0.4s ease;
+
+    &:focus {
+        border: 1px solid #4ed6f5;
+    }
+}
+
+.labelContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    justify-content: end;
+}
+
+
+.imgContainer {
+    position: relative;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 99;
+    font-size: 20px;
+    background-color: #4ed6f5;
+    border-radius: 20px;
+    padding: 4px;
+    transition: all ease 0.3s;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+@keyframes textExpand {
+    from {
+        letter-spacing: 0px;
+    } to {
+        letter-spacing: 2px;
+    }
+}
+

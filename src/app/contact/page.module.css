@@ -1,5 +1,5 @@
 .container {
-
+    animation: fadeIn 1s ease-in-out forwards;
 }
 
 .title {
@@ -57,4 +57,12 @@
 
 .input:focus, .textarea:focus {
     border-color: #4ed6f5;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
 }
