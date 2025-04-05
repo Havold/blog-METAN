@@ -101,6 +101,18 @@ const Dashboard = () => {
     setPreview(null);
   };
 
+  const handleDelete = async (
+    e: React.MouseEvent<SVGSVGElement>,
+    id: string | number
+  ) => {
+    e.preventDefault();
+    await fetch(`/api/posts/${id}`, {
+      method: "DELETE",
+    });
+
+    mutate(`api/posts?username=${session?.user?.username}`);
+  };
+
   const upload = async (image: File) => {
     const formData = new FormData();
     formData.append("file", image);
@@ -180,6 +192,7 @@ const Dashboard = () => {
                 title={post.title}
                 avatar={"/assets/default-avatar.jpg"}
                 username={post.username}
+                handleDelete={handleDelete}
               />
             ))
           ) : (

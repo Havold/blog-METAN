@@ -14,6 +14,10 @@ type PostWidgetProps = {
   role?: "member" | "admin";
   img: string;
   avatar: string;
+  handleDelete: (
+    e: React.MouseEvent<SVGSVGElement>,
+    id: string | number
+  ) => void;
 };
 
 const PostWidget: React.FC<PostWidgetProps> = ({
@@ -23,10 +27,14 @@ const PostWidget: React.FC<PostWidgetProps> = ({
   role = "member",
   img,
   avatar,
+  handleDelete,
 }) => {
   return (
     <Link href={`/blog/${id}`} className={styles.container}>
-      <CloseRounded className={styles.close} />
+      <CloseRounded
+        className={styles.close}
+        onClick={(e) => handleDelete(e, id)}
+      />
       <div className={styles.imgContainer}>
         <Image
           className={styles.img}
