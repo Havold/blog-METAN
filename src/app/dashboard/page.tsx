@@ -19,7 +19,7 @@ import PostWidget from "@/components/PostWidget/PostWidget";
 import Button from "@/components/Button/Button";
 
 type PostBlogProps = {
-  id: string;
+  _id: string;
   title: string;
   desc: string;
   img: string;
@@ -138,6 +138,8 @@ const Dashboard = () => {
 
     mutate(`api/posts?username=${session?.user?.username}`);
   };
+
+  console.log(data);
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
@@ -172,8 +174,8 @@ const Dashboard = () => {
           {data.length > 0 ? (
             data.map((post: PostBlogProps) => (
               <PostWidget
-                key={post.id}
-                id={post.id}
+                key={post._id}
+                id={post._id}
                 img={post.img}
                 title={post.title}
                 avatar={"/assets/default-avatar.jpg"}

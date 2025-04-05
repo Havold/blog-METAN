@@ -1,9 +1,9 @@
-import fs from "fs";
 import { writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
+import fs from "fs"
 import path from "path"
 
-const uploadDir = path.join(process.cwd(),"public/uploads")
+const uploadDir = path.join(process.cwd(), "public/uploads")
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
@@ -12,11 +12,10 @@ if (!fs.existsSync(uploadDir)) {
 export const POST = async (req: Request) => {
   const formData = await req.formData();
   const file = formData.get("file");
-
   if (!file) {
-    return NextResponse.json({err: "No files received."}, {status: 400})
+    return NextResponse.json({err: "No file received."}, {status: 400})
   }
-  
+
   let buffer;
   if (file instanceof File) {
     buffer = Buffer.from(await file.arrayBuffer())
@@ -25,16 +24,12 @@ export const POST = async (req: Request) => {
   }
 
   const filename = `${Date.now()}-${file.name}`
-  const imgUrl = path.join(uploadDir, filename)
-  console.log(imgUrl)
+
   try {
-    await writeFile(imgUrl, buffer);
-    return NextResponse.json({imgUrl: `/uploads/${filename}`}, {status: 200})
+    await writeFile(path.join(uploadDir, filename),buffer)
+    return NextResponse.json({imgUrl: `/uploads/${filename}`}, {status:200})
   } catch (error) {
-    console.log(error);
+    console.log(error)
     return NextResponse.json({err: error}, {status: 500})
   }
-
-  
-
 }
