@@ -6,6 +6,7 @@ import styles from "./navbar.module.css";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import { signOut, useSession } from "next-auth/react";
 import Button from "../Button/Button";
+import { usePathname } from "next/navigation";
 
 const links = [
   {
@@ -42,6 +43,9 @@ const links = [
 
 const Navbar = () => {
   const { data: session, status } = useSession();
+  const pathname = usePathname();
+  const tab = pathname.split("/")[1];
+
   return (
     <div className={styles.container}>
       <Link href="/" className={styles.logo}>
@@ -50,7 +54,17 @@ const Navbar = () => {
       <div className={styles.right}>
         <DarkModeToggle />
         {links.map((link) => (
-          <Link key={link.id} href={link.url}>
+          <Link
+            className={styles.tab}
+            key={link.id}
+            href={link.url}
+            style={
+              tab === link.title.toLowerCase() ||
+              (tab === "" && link.title === "Home")
+                ? { color: "#4ed6f5" }
+                : {}
+            }
+          >
             {link.title}
           </Link>
         ))}

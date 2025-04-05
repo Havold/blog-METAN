@@ -30,6 +30,10 @@
     align-items: center;
 }
 
+.tab {
+    transition: all 1s ease-in-out;
+}
+
 .btn {
     background-color: #CEE0F1;
     color: black;
