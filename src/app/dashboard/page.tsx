@@ -2,7 +2,7 @@
 import { useSession } from "next-auth/react";
 import { notFound, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
 import styles from "./page.module.css";
 import InputField from "@/components/InputField/InputField";
@@ -13,7 +13,6 @@ import {
   CloudRounded,
   DarkModeRounded,
   FlareRounded,
-  InsightsRounded,
 } from "@mui/icons-material";
 import Tag from "@/components/Tag/Tag";
 import PostWidget from "@/components/PostWidget/PostWidget";
@@ -57,13 +56,11 @@ const Dashboard = () => {
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const { data: session, status } = useSession();
-  console.log(session?.user);
   const { data, error, isLoading } = useSWR(
     `api/posts?username=${session?.user?.username}`,
     fetcher
   );
 
-  console.log(data);
   const router = useRouter();
 
   useEffect(() => {
@@ -104,6 +101,43 @@ const Dashboard = () => {
     setPreview(null);
   };
 
+  const upload = async (image: File) => {
+    const formData = new FormData();
+    formData.append("file", image);
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+    return data.imgUrl;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const username = session?.user?.username;
+    const title = e.target[0].value;
+    const desc = e.target[1].value;
+    const content = e.target[2].value;
+
+    let imgUrl = "";
+    if (image) {
+      imgUrl = await upload(image);
+    }
+
+    await fetch(`/api/posts`, {
+      method: "POST",
+      body: JSON.stringify({ title, desc, username, img: imgUrl, content }),
+    });
+
+    e.target[0].value = "";
+    e.target[1].value = "";
+    e.target[2].value = "";
+    setImage(null);
+    setPreview(null);
+
+    mutate(`api/posts?username=${session?.user?.username}`);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
@@ -155,7 +189,7 @@ const Dashboard = () => {
           )}
         </div>
       </div>
-      <form className={styles.createContainer}>
+      <form className={styles.createContainer} onSubmit={handleSubmit}>
         <span className={styles.title}>Add New Post</span>
         <InputField label="Title" name="title" required />
         <InputField label="Description" name="desc" required />
