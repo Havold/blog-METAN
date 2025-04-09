@@ -57,4 +57,20 @@ NEXTAUTH_URL = http://localhost:3000
 npm run dev
 ```
 ## 🖼️ Screenshots
+__1. Login Page__
+![Login Page](./public/assets/login_page.jpg)
 
+__2. Register Page__
+![Register Page](./public/assets/register_page.jpg)
+
+__3. Home Page__
+![Home Page](./public/assets/home_page.jpg)
+
+__4. Dashboard (Student Role)__
+![Dashboard](./public/assets/dashboard.jpg)
+
+__5. List of Blogs__
+![List of Blogs](./public/assets/listOfBlogs.jpg)
+
+__6. About__
+![About](./public/assets/about.jpg)
