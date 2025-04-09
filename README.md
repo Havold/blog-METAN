@@ -70,7 +70,7 @@ __4. Dashboard (Student Role)__
 ![Dashboard](./public/assets/dashboard.jpg)
 
 __5. List of Blogs__
-![List of Blogs](./public/assets/listOfBlogs.jpg)
+![List of Blogs](./public/assets/list_of_blogs.jpg)
 
 __6. About__
 ![About](./public/assets/about.jpg)
